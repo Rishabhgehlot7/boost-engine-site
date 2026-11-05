@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BrainCircuit, Code2, Rocket, Search } from 'lucide-react';
+import { Scrolly3DCanvas } from './Scrolly3DCanvas';
 
 const STAGES = [
   {
@@ -51,52 +52,72 @@ export const ScrollyCanvasSection = () => {
   const Icon = stage.icon;
 
   return (
-    <section id="how-it-works" ref={ref} className="relative h-[240vh] bg-[#030712] border-t border-b border-white/5">
+    <section id="how-it-works" ref={ref} className="relative h-[260vh] bg-[#030712] border-t border-b border-white/5">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_65%_50%,rgba(34,211,238,.08),transparent_30%)]" />
-        
-        <div className="max-w-7xl mx-auto px-6 md:px-16 w-full relative grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_65%_50%,rgba(34,211,238,.08),transparent_35%)]" />
+
+        <div className="max-w-7xl mx-auto px-6 md:px-16 w-full relative grid gap-10 lg:grid-cols-2 lg:items-center">
+          
+          {/* Left Column: Stage Details */}
           <div>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-4">
-              HOW IT WORKS
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-4">
+              INTERACTIVE 3D SCROLLYTELLING
             </span>
-            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight">
+            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.08]">
               A clear path from <br />
               <span className="text-gradient-cyan">problem to production.</span>
             </h2>
-            <p className="mt-5 max-w-xl text-sm leading-6 text-slate-400">
-              Scroll through the delivery model. Every stage exists to reduce risk, rework and time-to-value.
+            <p className="mt-5 max-w-xl text-sm sm:text-base leading-relaxed text-slate-400">
+              Scroll down to watch the 3D Boost Engine transform in realtime from chaotic logic to fully assembled production apps.
             </p>
-            <div className="mt-8 h-1.5 max-w-sm overflow-hidden rounded-full bg-white/10">
+
+            {/* Scroll Progress Bar */}
+            <div className="mt-8 h-2 max-w-md overflow-hidden rounded-full bg-white/10 p-0.5 border border-white/5">
               <div
-                className="h-full rounded-full bg-cyan-400 transition-[width] duration-100"
-                style={{ width: `${progress * 100}%` }}
+                className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 transition-[width] duration-75"
+                style={{ width: `${Math.round(progress * 100)}%` }}
               />
             </div>
-            <p className="mt-2 text-[10px] font-bold tracking-[.2em] text-slate-500">
-              {Math.round(progress * 100)}% DELIVERY JOURNEY
+            <p className="mt-2 text-xs font-mono font-bold tracking-widest text-cyan-400">
+              {Math.round(progress * 100)}% TRANSFORMATION COMPLETE
             </p>
-          </div>
 
-          <div className="relative">
-            <div className="absolute inset-10 rounded-full bg-cyan-400/10 blur-[90px]" />
-            <div className="glass-panel relative rounded-[32px] p-7 sm:p-10 border border-white/10 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                <span className="text-[10px] font-bold tracking-[.2em] text-cyan-400 font-mono">
-                  STAGE {stage.n}
+            {/* Active Stage Details Card */}
+            <div className="mt-8 glass-panel p-6 rounded-2xl border border-white/10">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                <span className="text-xs font-mono font-bold tracking-widest text-cyan-400">
+                  STAGE {stage.n} OF 04
                 </span>
-                <span className="text-[10px] text-slate-500 font-mono">BOOST / DELIVERY</span>
+                <span className="text-xs font-mono text-slate-500">BOOST / DELIVERY</span>
               </div>
-              <div className="mt-8 grid h-32 w-32 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.04] shadow-[0_0_60px_rgba(34,211,238,.12)]">
-                <Icon size={44} className="text-cyan-400" />
-              </div>
-              <h3 className="mt-6 text-2xl sm:text-3xl font-extrabold text-white">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {stage.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">
+              <p className="text-sm text-slate-300 leading-relaxed">
                 {stage.desc}
               </p>
-              <div className="mt-8 grid grid-cols-4 gap-2">
+            </div>
+          </div>
+
+          {/* Right Column: 3D Morphing Model (Reactor -> Thaaro Hisab 3D Phone) */}
+          <div className="relative flex items-center justify-center">
+            {/* Background Radial Glow */}
+            <div className="absolute inset-4 rounded-full bg-cyan-400/15 blur-[100px] pointer-events-none" />
+
+            {/* 3D Canvas Viewport */}
+            <div className="relative w-full rounded-3xl glass-card border border-white/10 p-4 shadow-2xl backdrop-blur-xl overflow-hidden">
+              <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                <span className="font-mono text-[10px] text-cyan-300 font-bold uppercase tracking-widest">
+                  LIVE WEBGL 3D VIEWPORT // DRAG TO ROTATE
+                </span>
+              </div>
+
+              {/* R3F 3D Canvas */}
+              <Scrolly3DCanvas progress={progress} />
+
+              {/* Stage Step Indicators */}
+              <div className="mt-4 grid grid-cols-4 gap-2">
                 {STAGES.map((s, i) => (
                   <div
                     key={s.n}
@@ -108,6 +129,7 @@ export const ScrollyCanvasSection = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
