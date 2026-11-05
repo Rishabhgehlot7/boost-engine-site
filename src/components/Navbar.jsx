@@ -1,4 +1,82 @@
-import React,{useEffect,useState} from 'react';import {ArrowUpRight,Menu,X,Cpu} from 'lucide-react';
-const links=[['How it works','#how-it-works'],['Solutions','#solutions'],['Process','#process'],['Contact','#contact']];
-export const Navbar=()=>{const[open,setOpen]=useState(false),[scrolled,setScrolled]=useState(false);useEffect(()=>{const f=()=>setScrolled(window.scrollY>18);f();window.addEventListener('scroll',f,{passive:true});return()=>window.removeEventListener('scroll',f)},[]);return <header className={`fixed inset-x-0 top-0 z-50 px-4 sm:px-6 transition-all duration-300 ${scrolled?'pt-3':'pt-4 sm:pt-5'}`}><nav className={`mx-auto max-w-7xl rounded-2xl border px-3 sm:px-4 ${scrolled?'border-white/10 bg-[#070b14]/85 shadow-2xl shadow-black/30 backdrop-blur-2xl':'border-white/[0.07] bg-[#070b14]/60 backdrop-blur-xl'}`}><div className="flex h-14 items-center justify-between"><a href="#top" className="flex items-center gap-2.5" aria-label="Boost Engine home"><span className="grid h-9 w-9 place-items-center rounded-xl bg-white text-slate-950 shadow-[0_0_28px_rgba(34,211,238,.18)]"><Cpu size={19}/></span><span className="font-bold tracking-[-.03em] text-white">BOOST<span className="text-cyan-300">ENGINE</span></span></a><div className="hidden items-center gap-7 md:flex">{links.map(([l,h])=><a key={h} href={h} className="text-sm font-medium text-slate-400 transition hover:text-white">{l}</a>)}</div><div className="hidden md:block"><a href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-950 transition hover:bg-cyan-100">Start a project <ArrowUpRight size={15}/></a></div><button className="rounded-xl border border-white/10 p-2 text-slate-200 md:hidden" onClick={()=>setOpen(v=>!v)} aria-label={open?'Close menu':'Open menu'}>{open?<X size={20}/>:<Menu size={20}/>}</button></div>{open&&<div className="border-t border-white/10 py-4 md:hidden"><div className="flex flex-col gap-1">{links.map(([l,h])=><a key={h} href={h} onClick={()=>setOpen(false)} className="rounded-xl px-3 py-3 text-sm text-slate-300 hover:bg-white/5 hover:text-white">{l}</a>)}<a href="#contact" onClick={()=>setOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-slate-950">Start a project <ArrowUpRight size={16}/></a></div></div>}</nav></header>};
+import React, { useState, useEffect } from 'react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 
+export const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3 transition-all duration-300">
+      <div 
+        className={`max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
+          scrolled 
+            ? 'bg-[#030712]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)]' 
+            : 'bg-transparent border border-transparent'
+        }`}
+      >
+        {/* Architectural Quiet Logo */}
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-white to-slate-400 p-[1px] flex items-center justify-center">
+            <div className="w-full h-full bg-[#030712] rounded-[7px] flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform duration-300 shadow-[0_0_8px_#00f0ff]" />
+            </div>
+          </div>
+          <span className="font-semibold text-sm tracking-tight text-white flex items-center gap-1.5">
+            Boost Engine <span className="text-[10px] text-slate-500 font-mono tracking-widest uppercase">/ Studio</span>
+          </span>
+        </a>
+
+        {/* Quiet Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-xs font-medium text-slate-400">
+          <a href="#how-it-works" className="hover:text-white transition-colors duration-200">Engineering Process</a>
+          <a href="#engine-terminal" className="hover:text-white transition-colors duration-200">Problem Solver</a>
+          <a href="#solutions" className="hover:text-white transition-colors duration-200">Flagship Products</a>
+          <a href="#contact" className="hover:text-white transition-colors duration-200">Start Intake</a>
+        </nav>
+
+        {/* Linear-grade Quiet CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-cyan-400/30 transition-all duration-200 shadow-sm"
+          >
+            <span>Consult Studio</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+          </a>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-white bg-white/5 border border-white/10"
+        >
+          {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+        </button>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="md:hidden mt-2 p-5 rounded-2xl bg-[#0B0F19]/95 backdrop-blur-2xl border border-white/10 flex flex-col gap-3 text-sm">
+          <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="text-slate-300 py-1.5">Engineering Process</a>
+          <a href="#engine-terminal" onClick={() => setMobileOpen(false)} className="text-slate-300 py-1.5">Problem Solver</a>
+          <a href="#solutions" onClick={() => setMobileOpen(false)} className="text-slate-300 py-1.5">Flagship Products</a>
+          <a 
+            href="#contact" 
+            onClick={() => setMobileOpen(false)} 
+            className="mt-2 w-full py-2.5 rounded-xl bg-white text-slate-950 font-semibold text-center text-xs"
+          >
+            Consult Studio
+          </a>
+        </div>
+      )}
+    </header>
+  );
+};

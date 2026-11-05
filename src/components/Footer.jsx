@@ -1,1 +1,62 @@
-import React from 'react';import {ArrowUpRight,Cpu} from 'lucide-react';export const Footer=()=> <footer className="border-t border-white/[0.06] py-12"><div className="container-main"><div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between"><div><a href="#top" className="flex items-center gap-2.5"><span className="grid h-9 w-9 place-items-center rounded-xl bg-white text-slate-950"><Cpu size={18}/></span><span className="font-bold text-white">BOOST<span className="text-cyan-300">ENGINE</span></span></a><p className="mt-4 max-w-sm text-xs leading-5 text-slate-500">Product engineering, AI automation, cloud and IoT systems for businesses that need technology to actually work.</p></div><div className="flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-slate-500"><a href="#how-it-works" className="hover:text-white">How it works</a><a href="#solutions" className="hover:text-white">Solutions</a><a href="#contact" className="hover:text-white">Contact</a><a href="#top" className="inline-flex items-center gap-1 hover:text-white">Back to top <ArrowUpRight size={13}/></a></div></div><div className="mt-10 flex flex-col gap-2 border-t border-white/[0.06] pt-6 text-[11px] text-slate-600 sm:flex-row sm:justify-between"><span>© {new Date().getFullYear()} Boost Engine. All rights reserved.</span><span>Problem koi bhi ho — Tech se hum solve karenge.</span></div></div></footer>;
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
+
+export const Footer = () => {
+  return (
+    <footer className="hairline-border-t bg-[#02050e] py-16 px-6 md:px-16 text-slate-500 text-xs font-mono">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        {/* Brand */}
+        <div className="md:col-span-2 space-y-3">
+          <div className="flex items-center gap-2">
+            <div className="w-5 h-5 rounded-md bg-white flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-slate-950" />
+            </div>
+            <span className="font-semibold text-white tracking-tight text-sm font-sans">
+              Boost Engine Studio
+            </span>
+          </div>
+          <p className="max-w-sm text-slate-400 font-sans text-xs leading-relaxed">
+            Product engineering studio building scalable digital systems, high-concurrency mobile suites, and autonomous workflows.
+          </p>
+          <div className="flex items-center gap-2 text-emerald-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span>GLOBAL INFRASTRUCTURE ONLINE</span>
+          </div>
+        </div>
+
+        {/* Index */}
+        <div className="space-y-2">
+          <div className="text-slate-400 uppercase tracking-widest text-[10px]">Architecture</div>
+          <ul className="space-y-1.5 text-slate-400 font-sans text-xs">
+            <li><a href="#how-it-works" className="hover:text-white transition-colors">Engineering Model</a></li>
+            <li><a href="#engine-terminal" className="hover:text-white transition-colors">Diagnostic Solver</a></li>
+            <li><a href="#solutions" className="hover:text-white transition-colors">Thaaro Hisab Suite</a></li>
+            <li><a href="#contact" className="hover:text-white transition-colors">Studio Intake</a></li>
+          </ul>
+        </div>
+
+        {/* Ecosystem */}
+        <div className="space-y-2">
+          <div className="text-slate-400 uppercase tracking-widest text-[10px]">Ecosystem</div>
+          <ul className="space-y-1.5 text-slate-400 font-sans text-xs">
+            <li className="text-slate-200">Thaaro Hisab (Production)</li>
+            <li>Autonomous Workers</li>
+            <li>Real-time Telemetry</li>
+            <li>Firebase & Cloud Architecture</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div className="max-w-6xl mx-auto pt-8 hairline-border-t flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-600">
+        <div>
+          © {new Date().getFullYear()} Boost Engine Inc. Precision engineering.
+        </div>
+        <div>
+          Problem koi bhi ho — Tech se hum solve karenge.
+        </div>
+      </div>
+    </footer>
+  );
+};

@@ -1,4 +1,113 @@
-import React from 'react';import {Smartphone,Bot,Cloud,Gauge,ArrowUpRight,CheckCircle2} from 'lucide-react';
-const S=[{icon:Smartphone,eyebrow:'PRODUCT ENGINEERING',title:'Web & Mobile Products',desc:'Customer-facing apps, internal platforms and SaaS products built around real workflows — not template features.',tags:['React','Flutter','Node.js'],accent:'cyan'},{icon:Bot,eyebrow:'AI & AUTOMATION',title:'Intelligent Workflows',desc:'Remove repetitive work with AI-assisted operations, integrations, agents, notifications and reliable business rules.',tags:['AI','APIs','Automation'],accent:'violet'},{icon:Cloud,eyebrow:'CLOUD & BACKEND',title:'Scalable Systems',desc:'Secure APIs, databases, queues, storage and deployment pipelines designed for observability and predictable growth.',tags:['Docker','Firebase','AWS'],accent:'emerald'},{icon:Gauge,eyebrow:'OPTIMIZATION',title:'Performance & Reliability',desc:'Fix slow experiences, fragile deployments and operational blind spots with measurable engineering improvements.',tags:['Performance','CI/CD','Monitoring'],accent:'amber'}];
-export const SolutionsShowcase=()=> <section id="solutions" className="section-pad"><div className="container-main"><div className="grid gap-8 lg:grid-cols-[1fr_420px] lg:items-end"><div><span className="eyebrow">Capabilities</span><h2 className="display mt-5 max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-6xl">One engineering partner. <span className="gradient-text">Multiple ways to ship.</span></h2></div><p className="text-sm leading-6 text-slate-400 sm:text-base">We combine product thinking, engineering and automation to move from idea or bottleneck to a maintainable production system.</p></div><div className="mt-12 grid gap-4 md:grid-cols-2">{S.map(({icon:Icon,eyebrow,title,desc,tags,accent})=><article key={title} className="surface surface-hover group relative overflow-hidden rounded-3xl p-7 sm:p-9"><div className={`pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full blur-3xl ${accent==='cyan'?'bg-cyan-400/10':accent==='violet'?'bg-violet-400/10':accent==='emerald'?'bg-emerald-400/10':'bg-amber-400/10'}`}/><div className="relative"><div className="flex items-start justify-between gap-4"><div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.04] text-cyan-300"><Icon size={23}/></div><ArrowUpRight className="text-slate-600 transition group-hover:text-white" size={20}/></div><p className="mt-8 text-[10px] font-bold tracking-[.2em] text-cyan-300">{eyebrow}</p><h3 className="display mt-2 text-2xl font-semibold text-white sm:text-3xl">{title}</h3><p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">{desc}</p><div className="mt-7 flex flex-wrap gap-2">{tags.map(t=><span key={t} className="rounded-lg border border-white/10 bg-black/20 px-2.5 py-1.5 text-[11px] font-medium text-slate-300">{t}</span>)}</div><div className="mt-7 flex items-center gap-2 text-xs font-semibold text-emerald-300"><CheckCircle2 size={14}/> Production-minded by default</div></div></article>)}</div></div></section>;
+import React from 'react';
+import { Smartphone, Cloud, Bot, Gauge, ArrowUpRight } from 'lucide-react';
 
+const SOLUTIONS = [
+  {
+    badge: 'FLAGSHIP MOBILE SUITE',
+    title: 'Thaaro Hisab — Intelligent Ledger & Credit OS',
+    category: 'Mobile Systems',
+    desc: 'High-performance mobile application engineered for commercial accounting, real-time multi-ledger synchronization, credit reminder automation, and offline-first database architectures.',
+    icon: Smartphone,
+    tags: ['Flutter Engine', 'Firebase Realtime', 'SQLite Offline', 'Low Latency'],
+    status: 'In Production'
+  },
+  {
+    badge: 'AUTONOMOUS WORKFLOWS',
+    title: 'Bespoke Automation & Intelligence Engines',
+    category: 'Process Automation',
+    desc: 'Replacing tedious manual operations with fault-tolerant workers. Multi-channel CRM orchestration, intelligent webhook handlers, and background processing systems that operate 24/7.',
+    icon: Bot,
+    tags: ['Autonomous Workers', 'Custom Webhooks', 'LLM Agent APIs', 'High Concurrency'],
+    status: 'Enterprise Ready'
+  },
+  {
+    badge: 'INFRASTRUCTURE & SCALING',
+    title: 'High-Availability Cloud & Data Pipelines',
+    category: 'Backend Architecture',
+    desc: 'Architected for zero downtime and instant read/write operations. Firestore, PostgreSQL, and serverless compute pipelines designed to withstand millions of monthly events.',
+    icon: Cloud,
+    tags: ['Firebase', 'Dockerized Microservices', 'Serverless Compute', 'PostgreSQL'],
+    status: '99.99% Reliability'
+  },
+  {
+    badge: 'DIGITAL SURFACES',
+    title: 'Precision Web Apps & Operational Portals',
+    category: 'Fullstack Web',
+    desc: 'Ultra-fast interfaces with sub-second initial loads, sub-millisecond interaction feedback, and real-time monitoring charts designed for rapid user adoption and conversion.',
+    icon: Gauge,
+    tags: ['React 19', 'Tailwind', 'Realtime Telemetry', 'Precision UX'],
+    status: '<0.8s First Load'
+  }
+];
+
+export const SolutionsShowcase = () => {
+  return (
+    <section id="solutions" className="py-20 px-6 md:px-16 max-w-6xl mx-auto relative z-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-slate-400 text-xs font-mono mb-4">
+            <span>ENGINEERING SPECTRUM</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white text-linear-headline">
+            Engineered For Scale. <br />
+            Built To Outlast.
+          </h2>
+        </div>
+        <p className="text-slate-400 max-w-sm text-sm leading-relaxed">
+          From commercial mobile solutions like <strong className="text-slate-200">Thaaro Hisab</strong> to bespoke enterprise backends, our work is defined by precision and speed.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {SOLUTIONS.map((sol, idx) => {
+          const Icon = sol.icon;
+          return (
+            <div
+              key={idx}
+              className="p-8 rounded-2xl linear-card flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-cyan-400 group-hover:border-cyan-400/30 transition-all duration-200">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono tracking-widest px-2.5 py-1 rounded-full bg-white/[0.03] text-slate-400 border border-white/5">
+                    {sol.badge}
+                  </span>
+                </div>
+
+                <div className="text-xs font-mono text-cyan-400 mb-1.5">{sol.category}</div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-200">
+                  {sol.title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6 font-normal">
+                  {sol.desc}
+                </p>
+              </div>
+
+              <div className="pt-6 hairline-border-t">
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {sol.tags.map((tag, i) => (
+                    <span key={i} className="px-2 py-0.5 rounded bg-white/[0.03] text-slate-400 font-mono text-[11px] border border-white/5">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-emerald-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    {sol.status}
+                  </span>
+                  <a href="#contact" className="text-slate-400 hover:text-white flex items-center gap-1 transition-colors duration-200 font-sans">
+                    Request Architecture <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
