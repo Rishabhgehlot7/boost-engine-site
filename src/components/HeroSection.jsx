@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ChevronRight, Check } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { HeroParticleCanvas } from './HeroParticleCanvas';
 import { Hero3DCanvas } from './Hero3DCanvas';
 
@@ -73,3 +73,5 @@ export const HeroSection = () => {
     </section>
   );
 };
+
+export default HeroSection;
